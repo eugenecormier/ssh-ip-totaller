@@ -37,10 +37,10 @@ def dumplist(lines):
     for line in linestemp:
         lines.append(line)
 
-def printtotals(totals):
+def printtotals(totals,color):
     totalssorted = sorted(totals.items(), key=itemgetter(1), reverse=True)
     for item in totalssorted:
-        print(str(item[1]) + ' | ' + str(item[0]))
+        print(color + str(item[1]) + ' | ' + str(item[0]))
         # str(totals[item]) ) # + ' | ' + item)
 
 ##############################################
@@ -59,9 +59,9 @@ def main():
     failedtotals = Counter(faileduser)
 
     system('clear')
-    print ('\nBlind hack attempts:\n--------------------')
-    printtotals(totals)
-    print ('\n\nSSH username hack attempts:\n---------------------------')
-    printtotals(failedtotals)
+    print ('\n\033[1;37mBlind hack attempts:\n--------------------')
+    printtotals(totals,'\033[1;32m')
+    print ('\n\n\033[1;37mSSH username hack attempts:\n---------------------------')
+    printtotals(failedtotals,'\033[1;31m')
 
 main()
