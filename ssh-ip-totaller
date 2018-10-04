@@ -57,10 +57,11 @@ def main():
     dumplist(faileduser)
     totals = Counter(lines)
     failedtotals = Counter(faileduser)
+
     system('clear')
-    print ('\nfailed server hits:\n-------------------')
+    print ('\nBlind hack attempts:\n--------------------')
     printtotals(totals)
-    print ('\n\nfailed ssh user hits:\n---------------------')
+    print ('\n\nSSH username hack attempts:\n---------------------------')
     printtotals(failedtotals)
 
 main()
