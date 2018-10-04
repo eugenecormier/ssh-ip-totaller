@@ -1,0 +1,2 @@
+*seperate failed user name attempts into different list, and colorize those in final output.... I want to identify who knows my port is ssh and ban them immediately
+*at some point I could consider direct iptables manipulation?
