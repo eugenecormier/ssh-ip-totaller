@@ -20,7 +20,7 @@ def search(lines):
         if 'Bad protocol version identification' in line or 'Did not receive identification string from' in line or 'Invalid user admin from' in line:
             lines.append(line)
 
-# pull out ip addresses
+# pull ip addresses out of lines
 def cutips(lines):
     for i in range(len(lines)):
         ip = findall( r'[0-9]+(?:\.[0-9]+){3}', lines[i] )
