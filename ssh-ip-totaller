@@ -63,5 +63,6 @@ def main():
     printtotals(totals,'\033[1;32m')
     print ('\n\n\033[1;37mSSH username hack attempts:\n---------------------------')
     printtotals(failedtotals,'\033[1;31m')
+    print('\033[0m')
 
 main()
