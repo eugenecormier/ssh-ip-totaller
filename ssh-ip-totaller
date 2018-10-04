@@ -15,10 +15,12 @@ from os import system
 ##############################################
 
 # read supplied file a line at a time pulling out valid ips from sshd lines
-def search(lines):
+def search(lines,faileduser):
     for line in open(argv[1]):
-        if 'Bad protocol version identification' in line or 'Did not receive identification string from' in line or 'Invalid user admin from' in line:
+        if 'Bad protocol version identification' in line or 'Did not receive identification string from' in line:
             lines.append(line)
+        elif 'Invalid user admin from' in line:
+            faileduser.append(line)
 
 # pull ip addresses out of lines
 def cutips(lines):
@@ -37,7 +39,6 @@ def dumplist(lines):
 
 def printtotals(totals):
     totalssorted = sorted(totals.items(), key=itemgetter(1), reverse=True)
-    system('clear')
     for item in totalssorted:
         print(str(item[1]) + ' | ' + str(item[0]))
         # str(totals[item]) ) # + ' | ' + item)
@@ -48,10 +49,18 @@ def printtotals(totals):
 
 def main():
     lines = []
-    search(lines)
+    faileduser = []
+    search(lines,faileduser)
     cutips(lines)
+    cutips(faileduser)
     dumplist(lines)
+    dumplist(faileduser)
     totals = Counter(lines)
+    failedtotals = Counter(faileduser)
+    system('clear')
+    print ('\nfailed server hits:\n-------------------')
     printtotals(totals)
+    print ('\n\nfailed ssh user hits:\n---------------------')
+    printtotals(failedtotals)
 
 main()
