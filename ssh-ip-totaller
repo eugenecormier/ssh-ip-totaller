@@ -40,8 +40,8 @@ def dumplist(lines):
 def printtotals(totals,color):
     totalssorted = sorted(totals.items(), key=itemgetter(1), reverse=True)
     for item in totalssorted:
-        print(color + str(item[1]) + ' | ' + str(item[0]))
-        # str(totals[item]) ) # + ' | ' + item)
+        if item[1] > 1:
+            print(color + str(item[1]) + ' | ' + str(item[0]))
 
 ##############################################
 ## MAIN FUNCTION
